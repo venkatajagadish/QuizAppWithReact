@@ -5,10 +5,12 @@ export default function Questions(props) {
       <div id="question">
         <h2>{props.text}</h2>
         <ul id="answers">
-          {props.answers.map((answer) => {
+          {props.answers.map((answer, index) => {
             return (
               <li key={answer} className="answer">
-                <button>{answer}</button>
+                <button onClick={() => props.saveResponse(index)}>
+                  {answer}
+                </button>
               </li>
             );
           })}
