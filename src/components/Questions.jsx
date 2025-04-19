@@ -4,12 +4,14 @@ export default function Questions(props) {
   const [highLightCorrectAnswer, setHighLightCorrectAnswer] =
     useState(undefined);
   function handleSelectAnswer(answer) {
-    console.log(props.correctAnswer);
+    if (highLightCorrectAnswer) {
+      return;
+    }
     setHighLightCorrectAnswer(props.correctAnswer);
     setTimeout(() => {
       setHighLightCorrectAnswer(undefined);
       props.saveResponse(answer);
-    }, 1500);
+    }, 5000);
   }
   return (
     <>
