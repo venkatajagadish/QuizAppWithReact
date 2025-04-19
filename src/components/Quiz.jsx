@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import QUESTIONS from "./../questions.js";
 import Questions from "./Questions.jsx";
 import completedImg from "./../assets/quiz-complete.png";
@@ -7,11 +7,19 @@ export default function Quiz() {
   const [responses, setResponses] = useState([]);
   var questionNumber = responses.length + 1;
 
-  function saveResponseForQuestion(selectedAnswer) {
+  const saveResponse = useCallback(function saveResponseForQuestion(
+    selectedAnswer
+  ) {
     setResponses((prevResponses) => {
       return [...prevResponses, selectedAnswer];
     });
-  }
+  },
+  []);
+  const onNoResponse = useCallback(function onTimeOut() {
+    setResponses((prevResponses) => {
+      return [...prevResponses, "No Answer"];
+    });
+  }, []);
   const isQuizComplete = responses.length == QUESTIONS.length;
   if (isQuizComplete) {
     return (
@@ -33,7 +41,8 @@ export default function Quiz() {
         <Questions
           questionNumber={questionNumber}
           {...currentQuestion}
-          saveResponse={saveResponseForQuestion}
+          saveResponse={saveResponse}
+          onTimeOut={onNoResponse}
         />
       </div>
     </>
