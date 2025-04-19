@@ -3,7 +3,6 @@ import { useState } from "react";
 export default function Questions(props) {
   const [highLightCorrectAnswer, setHighLightCorrectAnswer] = useState(99);
   function handleSelectAnswer(answer) {
-    console.log(props.correctAnswer, highLightCorrectAnswer);
     if (highLightCorrectAnswer != 99) {
       return;
     }

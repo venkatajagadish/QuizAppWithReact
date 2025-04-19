@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import QUESTIONS from "./../questions.js";
 import Questions from "./Questions.jsx";
-import completedImg from "./../assets/quiz-complete.png";
+import Summary from "./Summary.jsx";
 
 export default function Quiz() {
   const [responses, setResponses] = useState([]);
@@ -22,12 +22,7 @@ export default function Quiz() {
   }, []);
   const isQuizComplete = responses.length == QUESTIONS.length;
   if (isQuizComplete) {
-    return (
-      <div id="summary">
-        <img src={completedImg} />
-        <h2>Quiz is completed!!</h2>
-      </div>
-    );
+    return <Summary responses={responses} />;
   }
   var clonedQues = [...QUESTIONS].map((ques) => {
     return { ...ques, answers: [...ques.answers] };
