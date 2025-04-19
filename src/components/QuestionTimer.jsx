@@ -1,18 +1,18 @@
 import { useState, useEffect } from "react";
-export default function QuestionTimer({ timeout, onTimeOut, isSelected }) {
-  const [remainingTime, setRemainingTime] = useState(timeout);
+export default function QuestionTimer({ timeOut, onTimeOut, isSelected }) {
+  const [remainingTime, setRemainingTime] = useState(timeOut);
 
   useEffect(() => {
     var timeout = setTimeout(() => {
       if (!isSelected) {
-        onTimeOut;
+        onTimeOut();
       }
-    }, timeout);
+    }, timeOut);
 
     return () => {
       clearTimeout(timeout);
     };
-  }, [timeout]);
+  }, [timeOut, onTimeOut]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -24,5 +24,5 @@ export default function QuestionTimer({ timeout, onTimeOut, isSelected }) {
     };
   }, []);
 
-  return <progress id="question-time" max={timeout} value={remainingTime} />;
+  return <progress id="question-time" max={timeOut} value={remainingTime} />;
 }

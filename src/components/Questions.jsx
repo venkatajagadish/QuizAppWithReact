@@ -20,7 +20,7 @@ export default function Questions(props) {
         <QuestionTimer
           key={highLightCorrectAnswer}
           isSelected={highLightCorrectAnswer !== 99}
-          timeout={highLightCorrectAnswer == 99 ? 15000 : 2000}
+          timeOut={highLightCorrectAnswer == 99 ? 15000 : 2100}
           onTimeOut={props.onTimeOut}
         />
         <h2>{props.text}</h2>

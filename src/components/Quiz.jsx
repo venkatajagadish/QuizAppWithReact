@@ -49,6 +49,7 @@ export default function Quiz() {
     <>
       <div id="quiz">
         <Questions
+          key={questionNumber}
           questionNumber={questionNumber}
           {...currentQuestion}
           saveResponse={saveResponse}
