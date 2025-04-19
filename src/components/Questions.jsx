@@ -1,17 +1,17 @@
 import QuestionTimer from "./QuestionTimer";
 import { useState } from "react";
 export default function Questions(props) {
-  const [highLightCorrectAnswer, setHighLightCorrectAnswer] =
-    useState(undefined);
+  const [highLightCorrectAnswer, setHighLightCorrectAnswer] = useState(99);
   function handleSelectAnswer(answer) {
-    if (highLightCorrectAnswer) {
+    console.log(props.correctAnswer, highLightCorrectAnswer);
+    if (highLightCorrectAnswer != 99) {
       return;
     }
     setHighLightCorrectAnswer(props.correctAnswer);
     setTimeout(() => {
-      setHighLightCorrectAnswer(undefined);
       props.saveResponse(answer);
-    }, 5000);
+      setHighLightCorrectAnswer(99);
+    }, 2000);
   }
   return (
     <>
@@ -25,7 +25,8 @@ export default function Questions(props) {
               <li key={answer} className="answer">
                 <button
                   className={
-                    highLightCorrectAnswer && highLightCorrectAnswer == index
+                    highLightCorrectAnswer != 99 &&
+                    highLightCorrectAnswer == index
                       ? "correct"
                       : undefined
                   }
