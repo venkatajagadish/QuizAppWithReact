@@ -34,6 +34,16 @@ export default function Quiz() {
   });
   var currentQuestion = clonedQues[responses.length];
   currentQuestion.answers.sort(() => Math.random() - 0.5);
+  currentQuestion.correctAnswer = currentQuestion.answers.findIndex(
+    (answer) => {
+      return (
+        answer ==
+        QUESTIONS[responses.length].answers[
+          QUESTIONS[responses.length].correctAnswer
+        ]
+      );
+    }
+  );
 
   return (
     <>
