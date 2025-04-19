@@ -17,7 +17,12 @@ export default function Questions(props) {
     <>
       <p>Question {props.questionNumber}</p>
       <div id="question">
-        <QuestionTimer key={props.questionNumber} onTimeOut={props.onTimeOut} />
+        <QuestionTimer
+          key={highLightCorrectAnswer}
+          isSelected={highLightCorrectAnswer !== 99}
+          timeout={highLightCorrectAnswer == 99 ? 15000 : 2000}
+          onTimeOut={props.onTimeOut}
+        />
         <h2>{props.text}</h2>
         <ul id="answers">
           {props.answers.map((answer, index) => {
